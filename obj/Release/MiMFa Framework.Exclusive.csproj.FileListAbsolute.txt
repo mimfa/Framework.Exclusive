@@ -1,0 +1,14 @@
+D:\MiMFa\My Product\Software\Technology\MiMFa Framework\MiMFa Framework\Exclusive\bin\Release\MiMFa Framework.Exclusive.dll
+D:\MiMFa\My Product\Software\Technology\MiMFa Framework\MiMFa Framework\Exclusive\bin\Release\MiMFa Framework.Exclusive.pdb
+D:\MiMFa\My Product\Software\Technology\MiMFa Framework\MiMFa Framework\Exclusive\bin\Release\MiMFa Framework.dll
+D:\MiMFa\My Product\Software\Technology\MiMFa Framework\MiMFa Framework\Exclusive\bin\Release\MiMFa Framework.pdb
+D:\MiMFa\My Product\Software\Technology\MiMFa Framework\MiMFa Framework\Exclusive\obj\Release\MiMFa Framework.Exclusive.dll
+D:\MiMFa\My Product\Software\Technology\MiMFa Framework\MiMFa Framework\Exclusive\obj\Release\MiMFa Framework.Exclusive.pdb
+D:\MiMFa\My Product\Software\Technology\MiMFa Framework\MiMFa Framework\Exclusive\bin\Release\MiMFa Framework.Exclusive.dll.config
+D:\MiMFa\My Product\Software\Technology\MiMFa Framework\MiMFa Framework\Exclusive\bin\Release\MiMFa Framework.dll.config
+D:\MiMFa\My Product\Software\Technology\MiMFa Framework\MiMFa Framework\Exclusive\obj\Release\MiMFa Framework.Exclusive.csprojAssemblyReference.cache
+D:\MiMFa\My Product\Software\Technology\MiMFa Framework\MiMFa Framework\Exclusive\obj\Release\MiMFa Framework.Exclusive.csproj.CoreCompileInputs.cache
+D:\MiMFa\My Product\Software\Technology\MiMFa Framework\MiMFa Framework\Exclusive\obj\Release\MiMFa Framework.Exclusive.csproj.CopyComplete
+D:\MiMFa\My Product\Software\Technology\MiMFa Framework\MiMFa Framework\Exclusive\bin\Release\HtmlAgilityPack.dll
+D:\MiMFa\My Product\Software\Technology\MiMFa Framework\MiMFa Framework\Exclusive\bin\Release\HtmlAgilityPack.pdb
+D:\MiMFa\My Product\Software\Technology\MiMFa Framework\MiMFa Framework\Exclusive\bin\Release\HtmlAgilityPack.xml

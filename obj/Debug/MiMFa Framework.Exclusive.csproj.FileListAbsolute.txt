@@ -1,0 +1,30 @@
+D:\MiMFa\My Product\Software\MiMFa Framework\MiMFa Framework\Exclusive\obj\Debug\MiMFa Framework.Exclusive.csprojResolveAssemblyReference.cache
+D:\MiMFa\My Product\Software\MiMFa Framework\MiMFa Framework\Exclusive\bin\Debug\MiMFa Framework.Exclusive.dll
+D:\MiMFa\My Product\Software\MiMFa Framework\MiMFa Framework\Exclusive\bin\Debug\MiMFa Framework.Exclusive.pdb
+D:\MiMFa\My Product\Software\MiMFa Framework\MiMFa Framework\Exclusive\bin\Debug\Aspose.Words.dll
+D:\MiMFa\My Product\Software\MiMFa Framework\MiMFa Framework\Exclusive\bin\Debug\Devart.Data.dll
+D:\MiMFa\My Product\Software\MiMFa Framework\MiMFa Framework\Exclusive\bin\Debug\Devart.Data.SQLite.dll
+D:\MiMFa\My Product\Software\MiMFa Framework\MiMFa Framework\Exclusive\bin\Debug\EntityFramework.dll
+D:\MiMFa\My Product\Software\MiMFa Framework\MiMFa Framework\Exclusive\bin\Debug\MiMFa Framework.dll
+D:\MiMFa\My Product\Software\MiMFa Framework\MiMFa Framework\Exclusive\bin\Debug\System.Data.SQLite.dll
+D:\MiMFa\My Product\Software\MiMFa Framework\MiMFa Framework\Exclusive\bin\Debug\System.Data.SQLite.EF6.dll
+D:\MiMFa\My Product\Software\MiMFa Framework\MiMFa Framework\Exclusive\bin\Debug\System.Data.SQLite.Linq.dll
+D:\MiMFa\My Product\Software\MiMFa Framework\MiMFa Framework\Exclusive\bin\Debug\itextsharp.dll
+D:\MiMFa\My Product\Software\MiMFa Framework\MiMFa Framework\Exclusive\bin\Debug\SharpZipLib.dll
+D:\MiMFa\My Product\Software\MiMFa Framework\MiMFa Framework\Exclusive\bin\Debug\MiMFa Framework.pdb
+D:\MiMFa\My Product\Software\MiMFa Framework\MiMFa Framework\Exclusive\obj\Debug\MiMFa Framework.Exclusive.dll
+D:\MiMFa\My Product\Software\MiMFa Framework\MiMFa Framework\Exclusive\obj\Debug\MiMFa Framework.Exclusive.pdb
+D:\MiMFa\My Product\Software\Technology\MiMFa Framework\MiMFa Framework\Exclusive\bin\Debug\MiMFa Framework.Exclusive.dll
+D:\MiMFa\My Product\Software\Technology\MiMFa Framework\MiMFa Framework\Exclusive\bin\Debug\MiMFa Framework.Exclusive.pdb
+D:\MiMFa\My Product\Software\Technology\MiMFa Framework\MiMFa Framework\Exclusive\bin\Debug\MiMFa Framework.dll
+D:\MiMFa\My Product\Software\Technology\MiMFa Framework\MiMFa Framework\Exclusive\bin\Debug\MiMFa Framework.pdb
+D:\MiMFa\My Product\Software\Technology\MiMFa Framework\MiMFa Framework\Exclusive\obj\Debug\MiMFa Framework.Exclusive.dll
+D:\MiMFa\My Product\Software\Technology\MiMFa Framework\MiMFa Framework\Exclusive\obj\Debug\MiMFa Framework.Exclusive.pdb
+D:\MiMFa\My Product\Software\Technology\MiMFa Framework\MiMFa Framework\Exclusive\bin\Debug\MiMFa Framework.Exclusive.dll.config
+D:\MiMFa\My Product\Software\Technology\MiMFa Framework\MiMFa Framework\Exclusive\bin\Debug\MiMFa Framework.dll.config
+D:\MiMFa\My Product\Software\Technology\MiMFa Framework\MiMFa Framework\Exclusive\obj\Debug\MiMFa Framework.Exclusive.csprojAssemblyReference.cache
+D:\MiMFa\My Product\Software\Technology\MiMFa Framework\MiMFa Framework\Exclusive\obj\Debug\MiMFa Framework.Exclusive.csproj.CoreCompileInputs.cache
+D:\MiMFa\My Product\Software\Technology\MiMFa Framework\MiMFa Framework\Exclusive\obj\Debug\MiMFa Framework.Exclusive.csproj.CopyComplete
+D:\MiMFa\My Product\Software\Technology\MiMFa Framework\MiMFa Framework\Exclusive\bin\Debug\HtmlAgilityPack.dll
+D:\MiMFa\My Product\Software\Technology\MiMFa Framework\MiMFa Framework\Exclusive\bin\Debug\HtmlAgilityPack.pdb
+D:\MiMFa\My Product\Software\Technology\MiMFa Framework\MiMFa Framework\Exclusive\bin\Debug\HtmlAgilityPack.xml
