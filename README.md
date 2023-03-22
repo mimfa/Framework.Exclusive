@@ -6,6 +6,7 @@
 	</a>
 	<br><sub>The open-source Exclusive Modules part of a big Dot-Net-Based Framework, to makes easy software developments.</sub>
 </h1>
+<p>The Exclusive part of the MiMFa .Net-based Framework, contains a lot of prepared Exclusive modules and classes for multiple usages</p>
 <h2>Dependencies</h2>
 <ol>
   <li><a href="https://versionsof.net/framework/4.5.2">.Net Framework 4.5.2</a></li>
