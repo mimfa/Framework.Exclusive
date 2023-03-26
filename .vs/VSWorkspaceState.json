@@ -1,8 +1,12 @@
 {
   "ExpandedNodes": [
-    "",
-    "\\bin"
+    "\\Controls",
+    "\\Controls\\WinForm",
+    "\\Controls\\WinForm\\Menu",
+    "\\Controls\\WinForm\\Menu\\ColorTable",
+    "\\Engine",
+    "\\Engine\\Template",
+    "\\Engine\\Translate"
   ],
-  "SelectedNode": "\\bin",
   "PreviewInSolutionExplorer": false
 }
