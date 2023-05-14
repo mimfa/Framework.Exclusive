@@ -164,12 +164,14 @@ namespace MiMFa.Engine.Template
             foreach (DataGridViewRow item in forControl.Rows)
                 if (item.HasDefaultCellStyle)
                 {
-                    item.DefaultCellStyle.Font = Get(item.DefaultCellStyle.Font, Palette.Font);
-                    item.DefaultCellStyle.BackColor = Get(item.DefaultCellStyle.BackColor, Palette.BackColor);
+                    item.DefaultCellStyle.Font = Get(item.DefaultCellStyle.Font, Palette.InputFont);
+                    item.DefaultCellStyle.BackColor = Get(item.DefaultCellStyle.BackColor, Palette.InputBackColor);
                     item.DefaultCellStyle.SelectionBackColor = Get(item.DefaultCellStyle.SelectionBackColor, Palette.SpecialBackColor);
-                    item.DefaultCellStyle.ForeColor = Get(item.DefaultCellStyle.ForeColor, Palette.ForeColor);
+                    item.DefaultCellStyle.ForeColor = Get(item.DefaultCellStyle.ForeColor, Palette.InputForeColor);
                     item.DefaultCellStyle.SelectionForeColor = Get(item.DefaultCellStyle.SelectionForeColor, Palette.SpecialForeColor);
                 }
+
+            var pc = new Graphic.ProcessColor();
 
             if (forControl.ReadOnly)
             {
@@ -180,14 +182,16 @@ namespace MiMFa.Engine.Template
                 forControl.DefaultCellStyle.Font =
                     Palette.Font;
 
-                forControl.RowsDefaultCellStyle.BackColor =
                 forControl.RowHeadersDefaultCellStyle.BackColor =
                 forControl.ColumnHeadersDefaultCellStyle.BackColor =
-                forControl.AlternatingRowsDefaultCellStyle.BackColor =
                     Palette.BackColor;
+
+                forControl.AlternatingRowsDefaultCellStyle.BackColor =
+                forControl.RowsDefaultCellStyle.BackColor =
                 forControl.DefaultCellStyle.BackColor =
                 forControl.BackColor =
                     Palette.BackColor;
+
                 forControl.RowsDefaultCellStyle.SelectionBackColor =
                 forControl.RowHeadersDefaultCellStyle.SelectionBackColor =
                 forControl.ColumnHeadersDefaultCellStyle.SelectionBackColor =
@@ -195,14 +199,16 @@ namespace MiMFa.Engine.Template
                 forControl.DefaultCellStyle.SelectionBackColor =
                     Palette.ButtonBackColor;
 
-                forControl.RowsDefaultCellStyle.ForeColor =
                 forControl.RowHeadersDefaultCellStyle.ForeColor =
                 forControl.ColumnHeadersDefaultCellStyle.ForeColor =
-                forControl.AlternatingRowsDefaultCellStyle.ForeColor =
                     Palette.ForeColor;
+
+                forControl.RowsDefaultCellStyle.ForeColor =
+                forControl.AlternatingRowsDefaultCellStyle.ForeColor =
                 forControl.DefaultCellStyle.ForeColor =
                 forControl.ForeColor =
                     Palette.ForeColor;
+
                 forControl.RowsDefaultCellStyle.SelectionForeColor =
                 forControl.RowHeadersDefaultCellStyle.SelectionForeColor =
                 forControl.ColumnHeadersDefaultCellStyle.SelectionForeColor =
@@ -215,19 +221,24 @@ namespace MiMFa.Engine.Template
                 forControl.RowsDefaultCellStyle.Font =
                 forControl.RowHeadersDefaultCellStyle.Font =
                 forControl.ColumnHeadersDefaultCellStyle.Font =
-                forControl.AlternatingRowsDefaultCellStyle.Font =
                     Palette.Font;
+
+                forControl.AlternatingRowsDefaultCellStyle.Font =
                 forControl.DefaultCellStyle.Font =
                     Palette.InputFont;
 
-                forControl.AlternatingRowsDefaultCellStyle.BackColor =
-                forControl.RowsDefaultCellStyle.BackColor =
                 forControl.RowHeadersDefaultCellStyle.BackColor =
                 forControl.ColumnHeadersDefaultCellStyle.BackColor =
                     Palette.BackColor;
+
+                forControl.AlternatingRowsDefaultCellStyle.BackColor =
+                    pc.Light(Palette.InputBackColor, -8);
+
+                forControl.RowsDefaultCellStyle.BackColor =
                 forControl.DefaultCellStyle.BackColor =
                 forControl.BackColor =
                     Palette.InputBackColor;
+
                 forControl.AlternatingRowsDefaultCellStyle.SelectionBackColor =
                 forControl.RowsDefaultCellStyle.SelectionBackColor =
                 forControl.RowHeadersDefaultCellStyle.SelectionBackColor =
@@ -235,14 +246,16 @@ namespace MiMFa.Engine.Template
                 forControl.DefaultCellStyle.SelectionBackColor =
                     Palette.SpecialBackColor;
 
-                forControl.AlternatingRowsDefaultCellStyle.ForeColor =
-                forControl.RowsDefaultCellStyle.ForeColor =
                 forControl.RowHeadersDefaultCellStyle.ForeColor =
                 forControl.ColumnHeadersDefaultCellStyle.ForeColor =
                     Palette.ForeColor;
+
+                forControl.AlternatingRowsDefaultCellStyle.ForeColor =
+                forControl.RowsDefaultCellStyle.ForeColor =
                 forControl.DefaultCellStyle.ForeColor =
                 forControl.ForeColor =
                     Palette.InputForeColor;
+
                 forControl.AlternatingRowsDefaultCellStyle.SelectionForeColor =
                 forControl.RowsDefaultCellStyle.SelectionForeColor =
                 forControl.RowHeadersDefaultCellStyle.SelectionForeColor =
