@@ -31,3 +31,22 @@ D:\MiMFa\My Product\Technology\MiMFa Framework\MiMFa Framework\Exclusive\obj\Deb
 D:\MiMFa\My Product\Technology\MiMFa Framework\MiMFa Framework\Exclusive\obj\Debug\MiMFa.Exclusive.csproj.CopyComplete
 D:\MiMFa\My Product\Technology\MiMFa Framework\MiMFa Framework\Exclusive\obj\Debug\MiMFa Framework.Exclusive.dll
 D:\MiMFa\My Product\Technology\MiMFa Framework\MiMFa Framework\Exclusive\obj\Debug\MiMFa Framework.Exclusive.pdb
+D:\Product\Technology\MiMFa Framework\MiMFa Framework\Exclusive\bin\Debug\MiMFa Framework.Exclusive.dll.config
+D:\Product\Technology\MiMFa Framework\MiMFa Framework\Exclusive\bin\Debug\MiMFa Framework.Exclusive.dll
+D:\Product\Technology\MiMFa Framework\MiMFa Framework\Exclusive\bin\Debug\MiMFa Framework.Exclusive.pdb
+D:\Product\Technology\MiMFa Framework\MiMFa Framework\Exclusive\bin\Debug\Devart.Data.dll
+D:\Product\Technology\MiMFa Framework\MiMFa Framework\Exclusive\bin\Debug\Devart.Data.SQLite.dll
+D:\Product\Technology\MiMFa Framework\MiMFa Framework\Exclusive\bin\Debug\MiMFa Framework.dll
+D:\Product\Technology\MiMFa Framework\MiMFa Framework\Exclusive\bin\Debug\System.Data.SQLite.dll
+D:\Product\Technology\MiMFa Framework\MiMFa Framework\Exclusive\bin\Debug\System.Data.SQLite.EF6.dll
+D:\Product\Technology\MiMFa Framework\MiMFa Framework\Exclusive\bin\Debug\System.Data.SQLite.Linq.dll
+D:\Product\Technology\MiMFa Framework\MiMFa Framework\Exclusive\bin\Debug\HtmlAgilityPack.dll
+D:\Product\Technology\MiMFa Framework\MiMFa Framework\Exclusive\bin\Debug\MiMFa Framework.pdb
+D:\Product\Technology\MiMFa Framework\MiMFa Framework\Exclusive\bin\Debug\MiMFa Framework.dll.config
+D:\Product\Technology\MiMFa Framework\MiMFa Framework\Exclusive\bin\Debug\HtmlAgilityPack.pdb
+D:\Product\Technology\MiMFa Framework\MiMFa Framework\Exclusive\bin\Debug\HtmlAgilityPack.xml
+D:\Product\Technology\MiMFa Framework\MiMFa Framework\Exclusive\obj\Debug\MiMFa.Exclusive.csprojAssemblyReference.cache
+D:\Product\Technology\MiMFa Framework\MiMFa Framework\Exclusive\obj\Debug\MiMFa.Exclusive.csproj.CoreCompileInputs.cache
+D:\Product\Technology\MiMFa Framework\MiMFa Framework\Exclusive\obj\Debug\MiMFa.Exclusive.csproj.CopyComplete
+D:\Product\Technology\MiMFa Framework\MiMFa Framework\Exclusive\obj\Debug\MiMFa Framework.Exclusive.dll
+D:\Product\Technology\MiMFa Framework\MiMFa Framework\Exclusive\obj\Debug\MiMFa Framework.Exclusive.pdb

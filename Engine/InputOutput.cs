@@ -164,6 +164,11 @@ namespace MiMFa.Engine
             if (MainControl == null) MainControl = mainControl;
             LoadConfiguration();
             DialogService.InitialDirectory = GetConfiguration("DialogService.InitialDirectory");
+            if (mainControl is Form && ((Form)mainControl).WindowState == FormWindowState.Normal)
+            {
+                mainControl.Location = ConvertService.ToPoint(GetConfiguration(mainControl.Name + ".Location"), mainControl.Location);
+                mainControl.Size = ConvertService.ToSize(GetConfiguration(mainControl.Name + ".Size"), mainControl.Size);
+            }
             _OpenConfigurations(mainControl, nest, toolstrip, exceptControls);
         }
         private void _OpenConfigurations(Control mainControl, int nest = 10, bool toolstrip = true, params object[] exceptControls)
@@ -189,6 +194,11 @@ namespace MiMFa.Engine
             if (MainControl == null) MainControl = mainControl;
             LoadConfiguration();
             SetConfiguration("DialogService.InitialDirectory", DialogService.InitialDirectory);
+            if (mainControl is Form && ((Form)mainControl).WindowState == FormWindowState.Normal)
+            {
+                SetConfiguration(mainControl.Name + ".Location", ConvertService.ToString(mainControl.Location));
+                SetConfiguration(mainControl.Name + ".Size", ConvertService.ToString(mainControl.Size));
+            }
             _SaveConfigurations(mainControl, nest , toolstrip, exceptControls);
             StoreConfiguration();
         }
