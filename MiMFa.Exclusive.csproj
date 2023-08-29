@@ -77,7 +77,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controls\WinForm\Menu\ColorTable\CustomStripColors.cs" />
-    <Compile Include="Engine\Template\CustomPalette.cs" />
     <Compile Include="Engine\Template\SystemPalette.cs" />
     <Compile Include="Exclusive\Animate\Regularization.cs" />
     <Compile Include="Exclusive\Animate\SimplySlider.cs" />

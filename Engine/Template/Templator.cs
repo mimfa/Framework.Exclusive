@@ -291,6 +291,11 @@ namespace MiMFa.Engine.Template
         {
             if (!exceptControls.Any(v => v == forControl))
             {
+                if(!(forControl.Renderer is Controls.WinForm.Menu.ToolStripRender)) forControl.Renderer = new Controls.WinForm.Menu.ToolStripRender();
+                bool b = forControl.ShowImageMargin;
+                foreach (ToolStripItem item in forControl.Items)
+                    if (b = (item.Image != null || (item is ToolStripMenuItem && ((ToolStripMenuItem)item).CheckOnClick))) break;
+                forControl.ShowImageMargin = b;
                 forControl.Font = Get(forControl.Font, Palette.MenuFont);
                 forControl.BackColor = Get(forControl.BackColor, Palette.MenuBackColor);
                 forControl.ForeColor = Get(forControl.ForeColor, Palette.MenuForeColor);
@@ -302,6 +307,7 @@ namespace MiMFa.Engine.Template
         {
             if (!exceptControls.Any(v => v == forControl))
             {
+                if(!(forControl.Renderer is Controls.WinForm.Menu.ToolStripRender)) forControl.Renderer = new Controls.WinForm.Menu.ToolStripRender();
                 forControl.Font = Get(forControl.Font, Palette.MenuFont);
                 forControl.BackColor = Get(forControl.BackColor, Palette.MenuBackColor);
                 forControl.ForeColor = Get(forControl.ForeColor, Palette.MenuForeColor);

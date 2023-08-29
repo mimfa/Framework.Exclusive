@@ -12,6 +12,7 @@ using System.Windows.Forms;
 using Aspose.Words.Drawing.Charts;
 using System.Text.RegularExpressions;
 using MiMFa.Engine.Translate;
+using MiMFa.Service;
 
 namespace MiMFa.Engine.Translate
 {
@@ -90,6 +91,31 @@ namespace MiMFa.Engine.Translate
             }
         }
 
+        public virtual void UpdateLanguagesMenu(ToolStripDropDownItem toolStrip, Action<ToolStripMenuItem, string> changeAction)
+        {
+            toolStrip.DropDownItems.Clear();
+            ControlService.AddDropDownMenuItems(ref toolStrip,
+                GetLanguagesPath(),
+                (tsmi, item) =>
+                {
+                    if (tsmi.Checked)
+                    {
+                        if (Engine.Source.Path != item)
+                        {
+                            Default.Translator.Load(item);
+                            foreach (ToolStripMenuItem ddi in toolStrip.DropDownItems)
+                                if (ddi != tsmi) ddi.Checked = false;
+                            if (DialogService.ShowMessage(General.MessageMode.Question, "If you want to apply new changes, It needs to reopen the application!\r\nAre you sure you want to close the project?") == DialogResult.Yes)
+                            {
+                                changeAction(tsmi, item);
+                                ProcessService.Run(Application.ExecutablePath);
+                                Application.Exit();
+                            }
+                        }
+                    }
+                }, true
+                );
+        }
         public virtual IEnumerable<string> GetLanguagesPath()
         {
             if(Engine == null|| Engine.Source == null || Engine.Source.Directory == null) return new string[0];
@@ -107,7 +133,7 @@ namespace MiMFa.Engine.Translate
         public virtual void SetTo(Control control, int nest = 10, bool toolstrip = true, params object[] exceptControls)
         {
             if (exceptControls.Any(v => v == control)) return;
-            control.Text = Get(control.Text);
+            if(!(control is WebBrowserBase)) control.Text = Get(control.Text);
 
             if (control is Form) control.RightToLeft = Engine.IsRightToLeft ? System.Windows.Forms.RightToLeft.Yes : System.Windows.Forms.RightToLeft.No;
             else SetDirections(control);
