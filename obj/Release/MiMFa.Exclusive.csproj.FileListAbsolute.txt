@@ -43,8 +43,6 @@ D:\Product\Technology\MiMFa Framework\MiMFa Framework\Exclusive\bin\Release\Syst
 D:\Product\Technology\MiMFa Framework\MiMFa Framework\Exclusive\bin\Release\HtmlAgilityPack.dll
 D:\Product\Technology\MiMFa Framework\MiMFa Framework\Exclusive\bin\Release\MiMFa Framework.pdb
 D:\Product\Technology\MiMFa Framework\MiMFa Framework\Exclusive\bin\Release\MiMFa Framework.dll.config
-D:\Product\Technology\MiMFa Framework\MiMFa Framework\Exclusive\bin\Release\HtmlAgilityPack.pdb
-D:\Product\Technology\MiMFa Framework\MiMFa Framework\Exclusive\bin\Release\HtmlAgilityPack.xml
 D:\Product\Technology\MiMFa Framework\MiMFa Framework\Exclusive\obj\Release\MiMFa.Exclusive.csproj.CoreCompileInputs.cache
 D:\Product\Technology\MiMFa Framework\MiMFa Framework\Exclusive\obj\Release\MiMFa.Exclusive.csproj.CopyComplete
 D:\Product\Technology\MiMFa Framework\MiMFa Framework\Exclusive\obj\Release\MiMFa Framework.Exclusive.dll

@@ -183,10 +183,10 @@ namespace MiMFa.Engine
                     else;
                 }
                 else //Is Control
-                    GetFrom(mainControl);
+                    SetTo(mainControl);
                 if (toolstrip)
                     foreach (var item in Service.ControlService.GetAllToolStrips(mainControl, nest))
-                        GetFrom(item);
+                        SetTo(item);
             }
         }
         public void SaveConfigurations(Control mainControl, int nest = 10, bool toolstrip = true, params object[] exceptControls)
@@ -221,6 +221,34 @@ namespace MiMFa.Engine
         }
 
 
+        public bool HasConfiguration(string key) => Configurations.ContainsKey(key);
+        public bool HasConfiguration(Control control) => HasConfiguration(GetName(control));
+        public bool HasConfiguration(ToolStripItem control) => HasConfiguration(GetName(control));
+
+        public string GetStringConfiguration(string key, string defaultVal = default(string)) => GetConfiguration(key, s=>s, defaultVal);
+        public bool GetBoolConfiguration(string key, bool defaultVal = default(bool)) => GetConfiguration(key, s=>ConvertService.TryToBoolean(s, defaultVal), defaultVal);
+        public int GetIntConfiguration(string key, int defaultVal = default(int)) => GetConfiguration(key, s=>ConvertService.TryToInt(s, defaultVal), defaultVal);
+        public long GetLongConfiguration(string key, long defaultVal = default(long)) => GetConfiguration(key, s=>ConvertService.TryToLong(s, defaultVal), defaultVal);
+        public float GetSingleConfiguration(string key, float defaultVal = default(float)) => GetConfiguration(key, s=>ConvertService.TryToSingle(s, defaultVal), defaultVal);
+        public double GetDoubleConfiguration(string key, double defaultVal = default(double)) => GetConfiguration(key, s=>ConvertService.TryToDouble(s, defaultVal), defaultVal);
+        public double GetNumberConfiguration(string key, double defaultVal = default(double)) => GetConfiguration(key, s => ConvertService.TryToNumber(s, defaultVal), defaultVal);
+
+        public string GetStringConfiguration(Control control, string defaultVal = default(string)) => GetStringConfiguration(GetName(control), defaultVal);
+        public bool GetBoolConfiguration(Control control, bool defaultVal = default(bool)) => GetBoolConfiguration(GetName(control), defaultVal);
+        public int GetIntConfiguration(Control control, int defaultVal = default(int)) => GetIntConfiguration(GetName(control), defaultVal);
+        public long GetLongConfiguration(Control control, long defaultVal = default(long)) => GetLongConfiguration(GetName(control), defaultVal);
+        public float GetSingleConfiguration(Control control, float defaultVal = default(float)) => GetSingleConfiguration(GetName(control), defaultVal);
+        public double GetDoubleConfiguration(Control control, double defaultVal = default(double)) => GetDoubleConfiguration(GetName(control), defaultVal);
+        public double GetNumberConfiguration(Control control, double defaultVal = default(double)) => GetNumberConfiguration(GetName(control), defaultVal);
+
+        public string GetStringConfiguration(ToolStripItem control, string defaultVal = default(string)) => GetStringConfiguration(GetName(control), defaultVal);
+        public bool GetBoolConfiguration(ToolStripItem control, bool defaultVal = default(bool)) => GetBoolConfiguration(GetName(control), defaultVal);
+        public int GetIntConfiguration(ToolStripItem control, int defaultVal = default(int)) => GetIntConfiguration(GetName(control), defaultVal);
+        public long GetLongConfiguration(ToolStripItem control, long defaultVal = default(long)) => GetLongConfiguration(GetName(control), defaultVal);
+        public float GetSingleConfiguration(ToolStripItem control, float defaultVal = default(float)) => GetSingleConfiguration(GetName(control), defaultVal);
+        public double GetDoubleConfiguration(ToolStripItem control, double defaultVal = default(double)) => GetDoubleConfiguration(GetName(control), defaultVal);
+        public double GetNumberConfiguration(ToolStripItem control, double defaultVal = default(double)) => GetNumberConfiguration(GetName(control), defaultVal);
+
         public T GetConfiguration<T>(string key, Func<string, T> convertor, T defaultVal = default(T))
         {
             string value = Configurations.GetOrDefault(key, null);
@@ -233,8 +261,11 @@ namespace MiMFa.Engine
         public string GetConfiguration(ToolStripItem control, string defaultVal =null) => GetConfiguration(GetName(control), defaultVal);
         
         public string SetConfiguration<T>(string key, Func<string> convertor) => SetConfiguration(key, convertor());
+        public string SetConfiguration<T>(string key, Func<string, string> convertor) => SetConfiguration(key, convertor(key));
         public string SetConfiguration<T>(Control control, Func<string> convertor) => SetConfiguration(GetName(control), convertor());
+        public string SetConfiguration<T>(Control control, Func<Control, string> convertor) => SetConfiguration(GetName(control), convertor(control));
         public string SetConfiguration<T>(ToolStripItem control, Func<string> convertor) => SetConfiguration(GetName(control), convertor());
+        public string SetConfiguration<T>(ToolStripItem control, Func<ToolStripItem, string> convertor) => SetConfiguration(GetName(control), convertor(control));
         public string SetConfiguration(string key, string value)
         {
             Configurations.AddOrSet(key, value);
@@ -249,36 +280,41 @@ namespace MiMFa.Engine
         public virtual string GetName(Control control) => control.Parent == null ? control.Name : GetName(control.Parent) + "." + control.Name;
         public virtual string GetName(ToolStripItem control) => control.Owner == null ? control.Name : GetName(control.Owner) + "." + control.Name;
 
-        public virtual void GetFrom(Control control)
+        public virtual void SetTo(Control control)
         {
             if (control.Controls.Count == 0)
             {
-                if (control is ComboBox) GetFrom((ComboBox)control);
-                else if (control is RadioButton) GetFrom((RadioButton)control);
-                else if (control is CheckBox) GetFrom((CheckBox)control);
-                else if (control is ListBox) GetFrom((ListBox)control);
-                else if (control is TextBoxBase) GetFrom((TextBoxBase)control);
-                else if (control is ToolStrip) GetFrom((ToolStrip)control);
-                else if (!(control is Label) && !(control is Button)) control.Text = GetConfiguration(control, control.Text);
+                if (control is ComboBox) SetTo((ComboBox)control);
+                else if (control is RadioButton) SetTo((RadioButton)control);
+                else if (control is CheckBox) SetTo((CheckBox)control);
+                else if (control is ListBox) SetTo((ListBox)control);
+                else if (control is TextBoxBase) SetTo((TextBoxBase)control);
+                else if (control is ToolStrip) SetTo((ToolStrip)control);
+                else if (!(control is Label) && !(control is Button))
+                    try
+                    {
+                        control.Text = GetConfiguration(control, control.Text);
+                    }
+                    catch { }
             }
             else foreach (Control item in control.Controls)
-                    GetFrom(item);
+                    SetTo(item);
         }
-        public virtual void GetFrom(RadioButton forControl)
+        public virtual void SetTo(RadioButton forControl)
         {
             bool b;
             forControl.Checked = GetConfiguration(forControl, v => bool.TryParse(v, out b) ? b : forControl.Checked, forControl.Checked);
         }
-        public virtual void GetFrom(CheckBox forControl)
+        public virtual void SetTo(CheckBox forControl)
         {
             bool b;
             forControl.Checked = GetConfiguration(forControl, v => bool.TryParse(v, out b) ? b : forControl.Checked, forControl.Checked);
         }
-        public virtual void GetFrom(TextBoxBase forControl)
+        public virtual void SetTo(TextBoxBase forControl)
         {
             forControl.Text = GetConfiguration(forControl, forControl.Text);
         }
-        public virtual void GetFrom(ComboBox forControl)
+        public virtual void SetTo(ComboBox forControl)
         {
             if (forControl.DropDownStyle == ComboBoxStyle.DropDownList)
             {
@@ -288,7 +324,7 @@ namespace MiMFa.Engine
             else
                 forControl.Text = GetConfiguration(forControl, v => v, forControl.Text);
         }
-        public virtual void GetFrom(ListBox forControl)
+        public virtual void SetTo(ListBox forControl)
         {
             var val = GetConfiguration(forControl+"_Items", v => v==null?null: v.Split(InlineSeparator), null);
             if (val != null)
@@ -300,7 +336,7 @@ namespace MiMFa.Engine
             int value;
             forControl.SelectedIndex = GetConfiguration(forControl, v => int.TryParse(v, out value) && forControl.Items.Count > value ? value : forControl.SelectedIndex, forControl.SelectedIndex);
         }
-        public virtual void GetFrom(DataGridView forControl)
+        public virtual void SetTo(DataGridView forControl)
         {
             foreach (var item in GetConfiguration(forControl, val =>
                 {
@@ -317,47 +353,47 @@ namespace MiMFa.Engine
                     forControl.Rows[item[1]].Cells[item[0]].Selected = true;
         }
       
-        public virtual void GetFrom(ContextMenuStrip forControl)
+        public virtual void SetTo(ContextMenuStrip forControl)
         {
-            GetFrom(forControl.Items);
+            SetTo(forControl.Items);
         }
-        public virtual void GetFrom(ToolStrip forControl)
+        public virtual void SetTo(ToolStrip forControl)
         {
-            GetFrom(forControl.Items);
+            SetTo(forControl.Items);
         }
-        public virtual void GetFrom(ToolStripItemCollection forControl)
+        public virtual void SetTo(ToolStripItemCollection forControl)
         {
             foreach (ToolStripItem item in forControl)
-                GetFrom(item);
+                SetTo(item);
         }
-        public virtual void GetFrom(ToolStripItem forControl)
+        public virtual void SetTo(ToolStripItem forControl)
         {
-            if (forControl is ToolStripDropDownItem) GetFrom((ToolStripDropDownItem)forControl);
-            if (forControl is ToolStripMenuItem) GetFrom((ToolStripMenuItem)forControl);
-            else if (forControl is ToolStripButton) GetFrom((ToolStripButton)forControl);
-            else if (forControl is ToolStripTextBox) GetFrom((ToolStripTextBox)forControl);
-            else if (forControl is ToolStripComboBox) GetFrom((ToolStripComboBox)forControl);
+            if (forControl is ToolStripDropDownItem) SetTo((ToolStripDropDownItem)forControl);
+            if (forControl is ToolStripMenuItem) SetTo((ToolStripMenuItem)forControl);
+            else if (forControl is ToolStripButton) SetTo((ToolStripButton)forControl);
+            else if (forControl is ToolStripTextBox) SetTo((ToolStripTextBox)forControl);
+            else if (forControl is ToolStripComboBox) SetTo((ToolStripComboBox)forControl);
         }
-        public virtual void GetFrom(ToolStripDropDownItem forControl)
+        public virtual void SetTo(ToolStripDropDownItem forControl)
         {
-            GetFrom(forControl.DropDownItems);
+            SetTo(forControl.DropDownItems);
         }
-        public virtual void GetFrom(ToolStripMenuItem forControl)
-        {
-            bool b;
-            forControl.Checked = GetConfiguration(forControl, v => bool.TryParse(v, out b) ? b : forControl.Checked, forControl.Checked);
-            GetFrom(forControl.DropDownItems);
-        }
-        public virtual void GetFrom(ToolStripButton forControl)
+        public virtual void SetTo(ToolStripMenuItem forControl)
         {
             bool b;
             forControl.Checked = GetConfiguration(forControl, v => bool.TryParse(v, out b) ? b : forControl.Checked, forControl.Checked);
+            SetTo(forControl.DropDownItems);
         }
-        public virtual void GetFrom(ToolStripTextBox forControl)
+        public virtual void SetTo(ToolStripButton forControl)
+        {
+            bool b;
+            forControl.Checked = GetConfiguration(forControl, v => bool.TryParse(v, out b) ? b : forControl.Checked, forControl.Checked);
+        }
+        public virtual void SetTo(ToolStripTextBox forControl)
         {
             forControl.Text = GetConfiguration(forControl, v => v, forControl.Text);
         }
-        public virtual void GetFrom(ToolStripComboBox forControl)
+        public virtual void SetTo(ToolStripComboBox forControl)
         {
             if (forControl.DropDownStyle == ComboBoxStyle.DropDownList)
             {
