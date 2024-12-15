@@ -30,7 +30,7 @@ namespace MiMFa.Engine
         public char InlineSeparator { get; set; } = ';';
         public char InItemSeparator { get; set; } = ',';
         public Control MainControl { get => _MainControl; set
-                {
+            {
                 _MainControl = value;
                 if (_MainControl != null)
                 {
@@ -41,13 +41,13 @@ namespace MiMFa.Engine
                     _MainControl.DragDrop += DragDrop;
                 }
             } }
-        private Control _MainControl  = null;
+        private Control _MainControl = null;
         public string ConfigurationsPath { get; set; }
         public SmartDictionary<string, string> Configurations { get; set; } = new SmartDictionary<string, string>();
         public bool UnStoredChanges { get; set; } = true;
 
-        public event GenericEventHandler<InputOutput,bool> CreationHandle = (s) => true;
-        public event GenericEventHandler<InputOutput, string,string> ImportationHandle = (s, a) => a;
+        public event GenericEventHandler<InputOutput, bool> CreationHandle = (s) => true;
+        public event GenericEventHandler<InputOutput, string, string> ImportationHandle = (s, a) => a;
         public event GenericEventHandler<InputOutput, string, string> ExportationHandle = (s, a) => a;
         public event GenericEventHandler<InputOutput, string, string> UpdatingPath = (s, a) => a;
 
@@ -65,7 +65,7 @@ namespace MiMFa.Engine
             : this(Config.ConfigurationPath, "All Files (*.*)|*.*", "All Files (*.*)|*.*", mainControl, creationHandle, importationHandle, exportationHandle)
         {
         }
-        public InputOutput(string configPath, string filter, 
+        public InputOutput(string configPath, string filter,
             Control mainControl = null,
             GenericEventHandler<InputOutput, bool> creationHandle = null,
             GenericEventHandler<InputOutput, string, string> importationHandle = null,
@@ -117,8 +117,8 @@ namespace MiMFa.Engine
         public virtual bool Save()
         {
             if (HasPath)
-                return Export(Path)!=null;
-            return SaveAs()!=null;
+                return Export(Path) != null;
+            return SaveAs() != null;
         }
         public virtual string SaveAs()
         {
@@ -133,7 +133,7 @@ namespace MiMFa.Engine
             if (string.IsNullOrWhiteSpace(path)) return null;
             return ExportationHandle(this, path);
         }
-        public virtual bool Exit(string message ="Your project has some changes, Are you sure to close it?")
+        public virtual bool Exit(string message = "Your project has some changes, Are you sure to close it?")
         {
             if (DialogService.ShowMessage(MessageMode.Warning, message) == DialogResult.Yes)
             {
@@ -146,13 +146,13 @@ namespace MiMFa.Engine
         {
             if (string.IsNullOrWhiteSpace(path) || !File.Exists(path)) return null;
             UnStoredChanges = false;
-            return UpdatingPath(this,Path = path);
+            return UpdatingPath(this, Path = path);
         }
 
 
         public void LoadConfiguration()
         {
-            Configurations = File.Exists(ConfigurationsPath) ? new SmartDictionary<string, string>( IOService.ReadDictionary(ConfigurationsPath, Separator)) : new SmartDictionary<string, string>();
+            Configurations = File.Exists(ConfigurationsPath) ? new SmartDictionary<string, string>(IOService.ReadDictionary(ConfigurationsPath, Separator)) : new SmartDictionary<string, string>();
         }
         public void StoreConfiguration()
         {
@@ -165,10 +165,11 @@ namespace MiMFa.Engine
             LoadConfiguration();
             DialogService.InitialDirectory = GetConfiguration("DialogService.InitialDirectory");
             if (mainControl is Form && ((Form)mainControl).WindowState == FormWindowState.Normal)
-            {
-                mainControl.Location = ConvertService.ToPoint(GetConfiguration(mainControl.Name + ".Location"), mainControl.Location);
-                mainControl.Size = ConvertService.ToSize(GetConfiguration(mainControl.Name + ".Size"), mainControl.Size);
-            }
+                ControlService.SetControlThreadSafe(mainControl, () =>
+                {
+                    mainControl.Location = ConvertService.ToPoint(GetConfiguration(mainControl.Name + ".Location"), mainControl.Location);
+                    mainControl.Size = ConvertService.ToSize(GetConfiguration(mainControl.Name + ".Size"), mainControl.Size);
+                });
             _OpenConfigurations(mainControl, nest, toolstrip, exceptControls);
         }
         private void _OpenConfigurations(Control mainControl, int nest = 10, bool toolstrip = true, params object[] exceptControls)
@@ -199,14 +200,14 @@ namespace MiMFa.Engine
                 SetConfiguration(mainControl.Name + ".Location", ConvertService.ToString(mainControl.Location));
                 SetConfiguration(mainControl.Name + ".Size", ConvertService.ToString(mainControl.Size));
             }
-            _SaveConfigurations(mainControl, nest , toolstrip, exceptControls);
+            _SaveConfigurations(mainControl, nest, toolstrip, exceptControls);
             StoreConfiguration();
         }
         private void _SaveConfigurations(Control mainControl, int nest = 10, bool toolstrip = true, params object[] exceptControls)
         {
             if (!exceptControls.Any(v => v == mainControl))
             {
-                if (mainControl.Controls.Count > 0 &&(mainControl is Panel || mainControl is TableLayoutPanel || mainControl is GroupBox || mainControl is UserControl || mainControl is Form))
+                if (mainControl.Controls.Count > 0 && (mainControl is Panel || mainControl is TableLayoutPanel || mainControl is GroupBox || mainControl is UserControl || mainControl is Form))
                 {
                     if (nest > 0)
                         foreach (Control item in mainControl.Controls)
@@ -225,12 +226,12 @@ namespace MiMFa.Engine
         public bool HasConfiguration(Control control) => HasConfiguration(GetName(control));
         public bool HasConfiguration(ToolStripItem control) => HasConfiguration(GetName(control));
 
-        public string GetStringConfiguration(string key, string defaultVal = default(string)) => GetConfiguration(key, s=>s, defaultVal);
-        public bool GetBoolConfiguration(string key, bool defaultVal = default(bool)) => GetConfiguration(key, s=>ConvertService.TryToBoolean(s, defaultVal), defaultVal);
-        public int GetIntConfiguration(string key, int defaultVal = default(int)) => GetConfiguration(key, s=>ConvertService.TryToInt(s, defaultVal), defaultVal);
-        public long GetLongConfiguration(string key, long defaultVal = default(long)) => GetConfiguration(key, s=>ConvertService.TryToLong(s, defaultVal), defaultVal);
-        public float GetSingleConfiguration(string key, float defaultVal = default(float)) => GetConfiguration(key, s=>ConvertService.TryToSingle(s, defaultVal), defaultVal);
-        public double GetDoubleConfiguration(string key, double defaultVal = default(double)) => GetConfiguration(key, s=>ConvertService.TryToDouble(s, defaultVal), defaultVal);
+        public string GetStringConfiguration(string key, string defaultVal = default(string)) => GetConfiguration(key, s => s, defaultVal);
+        public bool GetBoolConfiguration(string key, bool defaultVal = default(bool)) => GetConfiguration(key, s => ConvertService.TryToBoolean(s, defaultVal), defaultVal);
+        public int GetIntConfiguration(string key, int defaultVal = default(int)) => GetConfiguration(key, s => ConvertService.TryToInt(s, defaultVal), defaultVal);
+        public long GetLongConfiguration(string key, long defaultVal = default(long)) => GetConfiguration(key, s => ConvertService.TryToLong(s, defaultVal), defaultVal);
+        public float GetSingleConfiguration(string key, float defaultVal = default(float)) => GetConfiguration(key, s => ConvertService.TryToSingle(s, defaultVal), defaultVal);
+        public double GetDoubleConfiguration(string key, double defaultVal = default(double)) => GetConfiguration(key, s => ConvertService.TryToDouble(s, defaultVal), defaultVal);
         public double GetNumberConfiguration(string key, double defaultVal = default(double)) => GetConfiguration(key, s => ConvertService.TryToNumber(s, defaultVal), defaultVal);
 
         public string GetStringConfiguration(Control control, string defaultVal = default(string)) => GetStringConfiguration(GetName(control), defaultVal);
@@ -256,10 +257,10 @@ namespace MiMFa.Engine
         }
         public T GetConfiguration<T>(Control control, Func<string, T> convertor, T defaultVal = default(T)) => GetConfiguration(GetName(control), convertor, defaultVal);
         public T GetConfiguration<T>(ToolStripItem control, Func<string, T> convertor, T defaultVal = default(T)) => GetConfiguration(GetName(control), convertor, defaultVal);
-        public string GetConfiguration(string key, string defaultVal =null) => Configurations.GetOrDefault(key, defaultVal);
-        public string GetConfiguration(Control control, string defaultVal =null) => GetConfiguration(GetName(control), defaultVal);
-        public string GetConfiguration(ToolStripItem control, string defaultVal =null) => GetConfiguration(GetName(control), defaultVal);
-        
+        public string GetConfiguration(string key, string defaultVal = null) => Configurations.GetOrDefault(key, defaultVal);
+        public string GetConfiguration(Control control, string defaultVal = null) => GetConfiguration(GetName(control), defaultVal);
+        public string GetConfiguration(ToolStripItem control, string defaultVal = null) => GetConfiguration(GetName(control), defaultVal);
+
         public string SetConfiguration<T>(string key, Func<string> convertor) => SetConfiguration(key, convertor());
         public string SetConfiguration<T>(string key, Func<string, string> convertor) => SetConfiguration(key, convertor(key));
         public string SetConfiguration<T>(Control control, Func<string> convertor) => SetConfiguration(GetName(control), convertor());
@@ -273,9 +274,9 @@ namespace MiMFa.Engine
         }
         public string SetConfiguration(Control control, string value) => SetConfiguration(GetName(control), value);
         public string SetConfiguration(ToolStripItem control, string value) => SetConfiguration(GetName(control), value);
-        public string SetConfiguration(string key, object value) => SetConfiguration(key, value+"");
-        public string SetConfiguration(Control control, object value) => SetConfiguration(GetName(control), value+"");
-        public string SetConfiguration(ToolStripItem control, object value) => SetConfiguration(GetName(control), value+"");
+        public string SetConfiguration(string key, object value) => SetConfiguration(key, value + "");
+        public string SetConfiguration(Control control, object value) => SetConfiguration(GetName(control), value + "");
+        public string SetConfiguration(ToolStripItem control, object value) => SetConfiguration(GetName(control), value + "");
 
         public virtual string GetName(Control control) => control.Parent == null ? control.Name : GetName(control.Parent) + "." + control.Name;
         public virtual string GetName(ToolStripItem control) => control.Owner == null ? control.Name : GetName(control.Owner) + "." + control.Name;
@@ -293,7 +294,7 @@ namespace MiMFa.Engine
                 else if (!(control is Label) && !(control is Button))
                     try
                     {
-                        control.Text = GetConfiguration(control, control.Text);
+                        ControlService.SetControlThreadSafe(control, () => control.Text = GetConfiguration(control, control.Text));
                     }
                     catch { }
             }
@@ -303,54 +304,67 @@ namespace MiMFa.Engine
         public virtual void SetTo(RadioButton forControl)
         {
             bool b;
-            forControl.Checked = GetConfiguration(forControl, v => bool.TryParse(v, out b) ? b : forControl.Checked, forControl.Checked);
+            ControlService.SetControlThreadSafe(forControl, () => forControl.Checked = GetConfiguration(forControl, v => bool.TryParse(v, out b) ? b : forControl.Checked, forControl.Checked));
         }
         public virtual void SetTo(CheckBox forControl)
         {
             bool b;
-            forControl.Checked = GetConfiguration(forControl, v => bool.TryParse(v, out b) ? b : forControl.Checked, forControl.Checked);
+            ControlService.SetControlThreadSafe(forControl, () => forControl.Checked = GetConfiguration(forControl, v => bool.TryParse(v, out b) ? b : forControl.Checked, forControl.Checked));
         }
         public virtual void SetTo(TextBoxBase forControl)
         {
-            forControl.Text = GetConfiguration(forControl, forControl.Text);
+            ControlService.SetControlThreadSafe(forControl, () => forControl.Text = GetConfiguration(forControl, forControl.Text));
         }
         public virtual void SetTo(ComboBox forControl)
         {
-            if (forControl.DropDownStyle == ComboBoxStyle.DropDownList)
+            ControlService.SetControlThreadSafe(forControl, () =>
             {
-                int value;
-                forControl.SelectedIndex = GetConfiguration(forControl, v => int.TryParse(v, out value) && forControl.Items.Count > value ? value : forControl.SelectedIndex, forControl.SelectedIndex);
-            }
-            else
-                forControl.Text = GetConfiguration(forControl, v => v, forControl.Text);
+                if (forControl.DropDownStyle == ComboBoxStyle.DropDownList)
+                {
+                    int value;
+                    forControl.SelectedIndex = GetConfiguration(forControl, v => int.TryParse(v, out value) && forControl.Items.Count > value ? value : forControl.SelectedIndex, forControl.SelectedIndex);
+                }
+                else
+                    forControl.Text = GetConfiguration(forControl, v => v, forControl.Text);
+            });
         }
         public virtual void SetTo(ListBox forControl)
         {
-            var val = GetConfiguration(forControl+"_Items", v => v==null?null: v.Split(InlineSeparator), null);
-            if (val != null)
+            ControlService.SetControlThreadSafe(forControl, () =>
             {
-                forControl.Items.Clear();
-                foreach (var item in val)
-                    forControl.Items.Add(item);
-            }
-            int value;
-            forControl.SelectedIndex = GetConfiguration(forControl, v => int.TryParse(v, out value) && forControl.Items.Count > value ? value : forControl.SelectedIndex, forControl.SelectedIndex);
+                var val = GetConfiguration(forControl + "_Items", v => v == null ? null : v.Split(InlineSeparator), null);
+                if (val != null)
+                {
+                    forControl.Items.Clear();
+                    foreach (var item in val)
+                        forControl.Items.Add(item);
+                }
+                int value;
+                forControl.SelectedIndex = GetConfiguration(forControl, v => int.TryParse(v, out value) && forControl.Items.Count > value ? value : forControl.SelectedIndex, forControl.SelectedIndex);
+            });
         }
         public virtual void SetTo(DataGridView forControl)
         {
-            foreach (var item in GetConfiguration(forControl, val =>
-                {
-                    return (from v in val.Split(InlineSeparator)
-                     let inds = v.Split(InItemSeparator)
-                     where inds.Length > 1
-                     let ci = MiMFa.Service.ConvertService.TryToInt(inds[0], -1)
-                     let ri = MiMFa.Service.ConvertService.TryToInt(inds[1], -1)
-                     where ci > -1 && ri > -1
-                     select new int[] { ci, ri }
-                  ).ToList();
-                }, new List<int[]>()))
-                if (item[0] < forControl.Columns.Count && item[1] < forControl.Rows.Count)
-                    forControl.Rows[item[1]].Cells[item[0]].Selected = true;
+            ControlService.SetControlThreadSafe(forControl, () =>
+            {
+                foreach (var item in GetConfiguration(forControl, val =>
+                    {
+                        return (from v in val.Split(InlineSeparator)
+                                let inds = v.Split(new string[] { InItemSeparator + "" }, StringSplitOptions.None)
+                                where inds.Length > 2
+                                let ci = ConvertService.TryToInt(inds[0], -1)
+                                let ri = ConvertService.TryToInt(inds[1], -1)
+                                where ci > -1 && ri > -1
+                                select new KeyValuePair<int[], string>(new int[] { ci, ri }, inds.Last())
+                      ).ToList();
+                    }, new List<KeyValuePair<int[], string>>()))
+                    try
+                    {
+                        if (item.Key.First() < forControl.Columns.Count && item.Key.Last() < forControl.Rows.Count)
+                            forControl.Rows[item.Key.Last()].Cells[item.Key.First()].Value = (object)item.Value;
+                    }
+                    catch { }
+            });
         }
       
         public virtual void SetTo(ContextMenuStrip forControl)
@@ -446,7 +460,7 @@ namespace MiMFa.Engine
         {
             List<object> ls = new List<object>();
             foreach (DataGridViewCell item in fromControl.SelectedCells)
-                ls.Add(item.ColumnIndex + InItemSeparator + item.RowIndex);
+                if(!item.ReadOnly) ls.Add(string.Join(InItemSeparator+"", item.ColumnIndex, item.RowIndex, item.Value));
             SetConfiguration(fromControl, string.Join(InlineSeparator + "", ls));
         }
 
